@@ -1,0 +1,16 @@
+python paco_imagenet.py \
+    --arch resnet50 \
+    --dataset imagenet \
+    --data /home/sharedir/research/ImageNet/ \
+    --alpha 0.05 \
+    --beta 1.0 \
+    --wd 1e-4 \
+    --gamma 1.0 \
+    --mark FImageNet_R50_alpha0.05_wd1e-4_mocot0.2_augrandclssim_400epochs_lr0.04 \
+    --lr 0.04 \
+    -b 256 \
+    --moco-t 0.2 \
+    --aug randcls_sim \
+    --epochs 400 \
+    --reload pretrained_model/moco_ckpt.best.pth.tar \
+    --evaluate 
