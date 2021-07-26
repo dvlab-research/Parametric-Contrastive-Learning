@@ -2,7 +2,6 @@ import argparse
 import builtins
 import math
 import os
-os.environ['OPENBLAS_NUM_THREADS'] = '2'
 import random
 import shutil
 import time
@@ -23,7 +22,6 @@ import torch.nn.functional as F
 from torch.cuda.amp import GradScaler
 from torch.cuda.amp import autocast
 
-from models import resnet_imagenet
 from randaugment import rand_augment_transform, GaussianBlur
 import moco.loader
 import moco.builder
@@ -31,6 +29,8 @@ from dataset.imagenet import ImageNetLT
 from dataset.imagenet_moco import ImageNetLT_moco
 from dataset.inat import INaturalist
 from dataset.inat_moco import INaturalist_moco
+from dataset.places import PlacesLT 
+from dataset.places_moco import PlacesLT_moco
 from losses import PaCoLoss
 from utils import shot_acc
 
@@ -38,10 +38,9 @@ from utils import shot_acc
 model_names = sorted(name for name in models.__dict__
                      if name.islower() and not name.startswith("__")
                      and callable(models.__dict__[name]))
-model_names += ['resnext101_32x4d']
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default='imagenet', choices=['inat', 'imagenet'])
+parser.add_argument('--dataset', default='imagenet', choices=['inat', 'imagenet', 'places'])
 parser.add_argument('--data', metavar='DIR', default='./data')
 parser.add_argument('--root_path', type=str, default='./data')
 parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet50',
@@ -49,7 +48,7 @@ parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet50',
                     help='model architecture: ' + ' | '.join(model_names) + ' (default: resnet50)')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
-parser.add_argument('--epochs', default=400, type=int, metavar='N',
+parser.add_argument('--epochs', default=200, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -64,7 +63,7 @@ parser.add_argument('--schedule', default=[120, 160], nargs='*', type=int,
                     help='learning rate schedule (when to drop lr by 10x)')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum of SGD solver')
-parser.add_argument('--wd', '--weight-decay', default=5e-4, type=float,
+parser.add_argument('--wd', '--weight-decay', default=1e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)',
                     dest='weight_decay')
 parser.add_argument('-p', '--print-freq', default=50, type=int,
@@ -114,9 +113,11 @@ parser.add_argument('--normalize', default=False, type=bool,
 # options for paco
 parser.add_argument('--mark', default=None, type=str,
                     help='log dir')
+parser.add_argument('--reload_torch', default=None, type=str,
+                    help='load supervised model from torchvision')
 parser.add_argument('--reload', default=None, type=str,
                     help='load supervised model')
-parser.add_argument('--warmup_epochs', default=10, type=int,
+parser.add_argument('--warmup_epochs', default=5, type=int,
                     help='warmup epochs')
 parser.add_argument('--alpha', default=1.0, type=float,
                     help='contrast weight among samples')
@@ -128,16 +129,26 @@ parser.add_argument('--aug', default=None, type=str,
                     help='aug strategy')
 parser.add_argument('--randaug_m', default=10, type=int, help='randaug-m')
 parser.add_argument('--randaug_n', default=2, type=int, help='randaug-n')
-parser.add_argument('--num_classes', default=1000, type=int, help='num classes in dataset')
+parser.add_argument('--num_classes', default=365, type=int, help='num classes in dataset')
 
 # fp16
 parser.add_argument('--fp16', action='store_true', help=' fp16 training')
 
 
-best_acc = 0
+def disable_conv(model):
+    for module in model.modules():
+        if isinstance(module, nn.Conv2d):
+           module.weight.requires_grad=False
+
+def disable_bn(model):
+    for module in model.modules():
+        if isinstance(module, nn.BatchNorm2d):
+           module.weight.requires_grad=False
+           module.bias.requires_grad=False
+
 def main():
     args = parser.parse_args()
-    args.root_model = f'{args.root_path}/{args.dataset}/{args.mark}'
+    args.root_model = f'{args.root_path}/{args.dataset}/{args.mark}/checkpoint'
     os.makedirs(args.root_model, exist_ok=True)
 
     if args.seed is not None:
@@ -173,7 +184,6 @@ def main():
 
 
 def main_worker(gpu, ngpus_per_node, args):
-    global best_acc
     args.gpu = gpu
 
     # suppress printing if not master
@@ -195,11 +205,10 @@ def main_worker(gpu, ngpus_per_node, args):
         dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
                                 world_size=args.world_size, rank=args.rank)
     # create model
-    # num_classes = 8142 if args.dataset == 'inat' else 1000
     print("=> creating model '{}'".format(args.arch))
     model = moco.builder.MoCo(
-        models.__dict__[args.arch] if args.arch != 'resnext101_32x4d' else getattr(resnet_imagenet, args.arch),
-        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.normalize, num_classes=args.num_classes)
+        models.__dict__[args.arch],
+        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.normalize, args.num_classes)
     print(model)
 
     if args.distributed:
@@ -214,26 +223,52 @@ def main_worker(gpu, ngpus_per_node, args):
             # ourselves based on the total number of GPUs we have
             args.batch_size = int(args.batch_size / ngpus_per_node)
             args.workers = int((args.workers + ngpus_per_node - 1) / ngpus_per_node)
-            model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
 
-            filename=f'{args.root_model}/moco_ckpt.pth.tar'
-            if os.path.exists(filename):
-               args.resume = filename
-
-            if args.reload:
+            if args.reload_torch:
                state_dict = model.state_dict()
-               state_dict_ssp = torch.load(args.reload)['state_dict']
-
-               print(state_dict_ssp.keys())
-
+               state_dict_imagenet = torch.load(args.reload_torch)
                for key in state_dict.keys():
+                      newkey = key[10:]
+                      if newkey in state_dict_imagenet.keys() and state_dict[key].shape == state_dict_imagenet[newkey].shape:
+                         state_dict[key]=state_dict_imagenet[newkey]
+                         print(key+" ****loaded******* ")
+                      else:
+                         print(key+" ****unloaded******* ")
+               model.load_state_dict(state_dict)
+            elif args.reload:
+                state_dict = model.state_dict()
+                state_dict_ssp = torch.load(args.reload)['state_dict']
+                print(state_dict_ssp.keys())
+                for key in state_dict.keys():
                       print(key)
                       if key in state_dict_ssp.keys() and state_dict[key].shape == state_dict_ssp[key].shape:
                          state_dict[key]=state_dict_ssp[key]
                          print(key+" ****loaded******* ")
                       else:
                          print(key+" ****unloaded******* ")
-               model.load_state_dict(state_dict)
+                model.load_state_dict(state_dict)
+
+           
+            #### fix
+            disable_conv(model)
+            for module in model.encoder_q.layer4[-1].modules():
+                if isinstance(module, nn.Conv2d):
+                   module.weight.requires_grad=True
+                if isinstance(module, nn.BatchNorm2d):
+                   module.weight.requires_grad=True
+                   module.bias.requires_grad=True
+
+            for module in model.encoder_q.layer4[-1].modules():
+                if isinstance(module, nn.Conv2d):
+                   module.weight.requires_grad=True
+                if isinstance(module, nn.BatchNorm2d):
+                   module.weight.requires_grad=True
+                   module.bias.requires_grad=True
+
+            model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
+            filename=f'{args.root_model}/moco_ckpt.pth.tar'
+            if os.path.exists(filename):
+                args.resume = filename
 
         else:
             model.cuda()
@@ -280,14 +315,10 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # Data loading code
     traindir = os.path.join(args.data, 'train')
-    txt_train = f'./imagenet_inat/data/iNaturalist18/iNaturalist18_train.txt' if args.dataset == 'inat' \
-        else f'./imagenet_inat/data/ImageNet_LT/ImageNet_LT_train.txt'
+    txt_train = f'imagenet_inat/data/Places_LT/Places_LT_train.txt'
+    txt_test = f'imagenet_inat/data/Places_LT/Places_LT_val.txt'
 
-    txt_test = f'./imagenet_inat/data/iNaturalist18/iNaturalist18_test.txt' if args.dataset == 'inat' \
-        else f'./imagenet_inat/data/ImageNet_LT/ImageNet_LT_test.txt'
-
-    normalize = transforms.Normalize(mean=[0.466, 0.471, 0.380], std=[0.195, 0.194, 0.192]) if args.dataset == 'inat' \
-        else transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     if args.aug_plus:
         # MoCo v2's aug: similar to SimCLR https://arxiv.org/abs/2002.05709
         augmentation = [
@@ -332,18 +363,6 @@ def main_worker(gpu, ngpus_per_node, args):
             normalize
     ]
 
-    augmentation_sim02 = [
-            transforms.RandomResizedCrop(224, scale=(0.2,1.)),
-            transforms.RandomApply([
-                transforms.ColorJitter(0.4, 0.4, 0.4, 0.0)  # not strengthened
-            ], p=1.0),
-            transforms.RandomGrayscale(p=0.2),
-            transforms.RandomApply([moco.loader.GaussianBlur([.1, 2.])], p=0.5),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            normalize
-    ]
-
     rgb_mean = (0.485, 0.456, 0.406)
     ra_params = dict(translate_const=int(224 * 0.45), img_mean=tuple([min(255, round(255 * x)) for x in rgb_mean]),)
     augmentation_randnclsstack = [
@@ -365,7 +384,7 @@ def main_worker(gpu, ngpus_per_node, args):
             transforms.RandomApply([
                 transforms.ColorJitter(0.4, 0.4, 0.4, 0.0)
             ], p=1.0),
-            rand_augment_transform('rand-n{}-m{}-mstd0.5'.format(args.randaug_n, args.randaug_m), ra_params),
+            rand_augment_transform('rand-n{}-m{}-mstd0.5'.format(2, 10), ra_params),
             transforms.ToTensor(),
             normalize,
     ]
@@ -376,11 +395,7 @@ def main_worker(gpu, ngpus_per_node, args):
             transforms.ToTensor(),
             normalize])
 
-    val_dataset = INaturalist(
-        root=args.data,
-        txt=txt_test,
-        transform=val_transform
-    ) if args.dataset == 'inat' else ImageNetLT(
+    val_dataset = PlacesLT(
         root=args.data,
         txt=txt_test,
         transform=val_transform)
@@ -398,11 +413,7 @@ def main_worker(gpu, ngpus_per_node, args):
     elif args.aug == 'randclsstack_sim02':
          transform_train = [transforms.Compose(augmentation_randnclsstack), transforms.Compose(augmentation_sim02)]
 
-    train_dataset = INaturalist_moco(
-        root=args.data,
-        txt=txt_train,
-        transform=transforms.Compose(augmentation)
-    ) if args.dataset == 'inat' else ImageNetLT_moco(
+    train_dataset = PlacesLT_moco(
         root=args.data,
         txt=txt_train,
         transform=transform_train)
@@ -428,9 +439,7 @@ def main_worker(gpu, ngpus_per_node, args):
         validate(val_loader, train_loader, model, criterion_ce, args)
         return
 
-    # mixed precision 
     scaler = GradScaler()
-
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
@@ -469,6 +478,8 @@ def train(train_loader, model, criterion, optimizer, epoch, scaler, args):
 
     # switch to train mode
     model.train()
+    total_logits = torch.empty((0, args.num_classes)).cuda()
+    total_labels = torch.empty(0, dtype=torch.long).cuda()
 
     end = time.time()
     for i, (images, target) in enumerate(train_loader):
@@ -482,8 +493,8 @@ def train(train_loader, model, criterion, optimizer, epoch, scaler, args):
 
         # compute output
         if not args.fp16:
-           features, labels, logits = model(im_q=images[0], im_k=images[1], labels=target)
-           loss = criterion(features, labels, logits)
+            features, labels, logits = model(im_q=images[0], im_k=images[1], labels=target)
+            loss = criterion(features, labels, logits)
         else:
             with autocast():
                 features, labels, logits = model(im_q=images[0], im_k=images[1], labels=target)
@@ -501,17 +512,16 @@ def train(train_loader, model, criterion, optimizer, epoch, scaler, args):
             optimizer.step()
         else:
             scaler.scale(loss).backward()
-            scaler.step(optimier)
+            scaler.step(optimizer)
             scaler.update()
-
 
         # measure elapsed time
         batch_time.update(time.time() - end)
         end = time.time()
 
         if i % args.print_freq == 0:
-            progress.display(i, args)
-
+            progress.display(i)
+    
 
 def validate(val_loader, train_loader, model, criterion, args):
     batch_time = AverageMeter('Time', ':6.3f')
@@ -525,7 +535,7 @@ def validate(val_loader, train_loader, model, criterion, args):
 
     # switch to evaluate mode
     model.eval()
-    total_logits = torch.empty((0, 1000)).cuda()
+    total_logits = torch.empty((0, args.num_classes)).cuda()
     total_labels = torch.empty(0, dtype=torch.long).cuda()
 
     with torch.no_grad():
@@ -554,15 +564,15 @@ def validate(val_loader, train_loader, model, criterion, args):
             end = time.time()
 
             if i % args.print_freq == 0:
-                progress.display(i, args)
+                progress.display(i)
 
         # TODO: this should also be done with the ProgressMeter
-        open(args.root_model+"/"+args.mark+".log","a+").write(' * Acc@1 {top1.avg:.3f} Acc@5 {top5.avg:.3f}\n'
+        print(' * Acc@1 {top1.avg:.3f} Acc@5 {top5.avg:.3f}'
               .format(top1=top1, top5=top5))
 
         probs, preds = F.softmax(total_logits.detach(), dim=1).max(dim=1)
         many_acc_top1, median_acc_top1, low_acc_top1, cls_accs = shot_acc(preds, total_labels, train_loader, acc_per_cls=True)
-        open(args.root_model+"/"+args.mark+".log","a+").write('Many_acc: %.5f, Medium_acc: %.5f Low_acc: %.5f\n'%(many_acc_top1, median_acc_top1, low_acc_top1))
+        print('Many_acc: %.5f, Medium_acc: %.5f Low_acc: %.5f\n'%(many_acc_top1, median_acc_top1, low_acc_top1))
 
     return top1.avg
 
@@ -602,10 +612,10 @@ class ProgressMeter(object):
         self.meters = meters
         self.prefix = prefix
 
-    def display(self, batch, args):
+    def display(self, batch):
         entries = [self.prefix + self.batch_fmtstr.format(batch)]
         entries += [str(meter) for meter in self.meters]
-        open(args.root_model+"/"+args.mark+".log","a+").write('\t'.join(entries)+"\n")
+        print('\t'.join(entries))
 
     def _get_batch_fmtstr(self, num_batches):
         num_digits = len(str(num_batches // 1))
