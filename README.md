@@ -12,28 +12,28 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
 # Results and Pretrained models
 ## Full ImageNet
 
- | Method | Model | Top-1 Acc(%) | link |  
- | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-50  | 79.3 | [download]() |
- | PaCo  | ResNet-101 | 80.9 | [download]() |
+ | Method | Model | Top-1 Acc(%) | link | log |  
+ | :---: | :---: | :---: | :---: | :---: |
+ | PaCo  | ResNet-50  | 79.3 | [download](https://drive.google.com/file/d/1fBbTWJlM3knjN0SIjrLhQw_TeUuoHsOe/view?usp=sharing) | [download](https://drive.google.com/file/d/1G_oTmBxAxwZdIa4YJSCJ-lYslwvsBMiF/view?usp=sharing) |
+ | PaCo  | ResNet-101 | 80.9 | [download]() | [download](https://drive.google.com/file/d/1axS5ryB-MjoKBRN4N9lVHyLQ2pOfKgMw/view?usp=sharing) |
  
 ## ImageNet-LT
- | Method | Model | Top-1 Acc(%) | link |  
- | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-50   | 57.0 | [download]() |
- | PaCo  | ResNeXt-50  | 58.2 | [download]() |
- | PaCo  | ResNeXt-101 | 60.0 | [download]() |
+ | Method | Model | Top-1 Acc(%) | link | log | 
+ | :---: | :---: | :---: | :---: | :---: |
+ | PaCo  | ResNet-50   | 57.0 | [download]() | [download]() |
+ | PaCo  | ResNeXt-50  | 58.2 | [download]() | [download]() |
+ | PaCo  | ResNeXt-101 | 60.0 | [download]() | [download]() |
  
  ## iNaturalist 2018
- | Method | Model | Top-1 Acc(%) | link |  
- | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-50   | 73.2 | [download]() |
- | PaCo  | ResNet-152  | 75.2 | [download]() |
+ | Method | Model | Top-1 Acc(%) | link |  log |
+ | :---: | :---: | :---: | :---: | :---: |
+ | PaCo  | ResNet-50   | 73.2 | [download]() | [download]() |
+ | PaCo  | ResNet-152  | 75.2 | [download]() | [download]() |
  
  ## Places-LT
-  | Method | Model | Top-1 Acc(%) | link |  
- | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-152   | 41.2 | [download]() |
+  | Method | Model | Top-1 Acc(%) | link | log | 
+ | :---: | :---: | :---: | :---: | :---: |
+ | PaCo  | ResNet-152   | 41.2 | [download]() | [download]() |
  
 # Get Started
 For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation:  
