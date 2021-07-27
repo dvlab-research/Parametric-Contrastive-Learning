@@ -1,5 +1,5 @@
 # Parametric-Contrastive-Learning
-This repository contains the implementation code for paper:  
+This repository contains the implementation code for ICCV2021 paper:  
 **Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028)  
 
 If you find this code or idea useful, please consider citing our work:
