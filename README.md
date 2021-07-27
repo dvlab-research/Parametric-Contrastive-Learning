@@ -28,6 +28,7 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
  | :---: | :---: | :---: | :---: | :---: |
  | PaCo  | ResNet-50  | 79.3 | [download](https://drive.google.com/file/d/1fBbTWJlM3knjN0SIjrLhQw_TeUuoHsOe/view?usp=sharing) | [download](https://drive.google.com/file/d/1G_oTmBxAxwZdIa4YJSCJ-lYslwvsBMiF/view?usp=sharing) |
  | PaCo  | ResNet-101 | 80.9 | [download](https://drive.google.com/file/d/18lAQu33eN4pzhOi6lSmvfK6ORvD0gMGg/view?usp=sharing) | [download](https://drive.google.com/file/d/1axS5ryB-MjoKBRN4N9lVHyLQ2pOfKgMw/view?usp=sharing) |
+ | PaCo  | ResNet-200 | 81.8 | [download]() | [download]() | 
  
 ## ImageNet-LT
  | Method | Model | Top-1 Acc(%) | link | log | 
