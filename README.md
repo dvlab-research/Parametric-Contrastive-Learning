@@ -20,9 +20,9 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
 ## ImageNet-LT
  | Method | Model | Top-1 Acc(%) | link | log | 
  | :---: | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-50   | 57.0 | [download]() | [download]() |
- | PaCo  | ResNeXt-50  | 58.2 | [download]() | [download]() |
- | PaCo  | ResNeXt-101 | 60.0 | [download]() | [download]() |
+ | PaCo  | ResNet-50   | 57.0 | [download](https://drive.google.com/file/d/1a73Ez_k47S2hmD_0L-sLH0OEhxK8SpQt/view?usp=sharing) | [download](https://drive.google.com/file/d/1NmynVzdkSye0FNEEyHSFF1oMc6q2wypJ/view?usp=sharing) |
+ | PaCo  | ResNeXt-50  | 58.2 | [download](https://drive.google.com/file/d/1J7pvp-CWx7e2hPFNa1a05Oy9igHSe1eM/view?usp=sharing) | [download](https://drive.google.com/file/d/1ssvsA-xG2oj5wUwmC-Gu_pVZdg9POp7R/view?usp=sharing) |
+ | PaCo  | ResNeXt-101 | 60.0 | [download](https://drive.google.com/file/d/1k14zhOwF8NBTb17mUN_UAGBkIIZsVBCV/view?usp=sharing) | [download](https://drive.google.com/file/d/1ZVwUKFb9AozaNKb8aSUXLCy27LgE7Kt2/view?usp=sharing) |
  
  ## iNaturalist 2018
  | Method | Model | Top-1 Acc(%) | link |  log |
