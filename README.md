@@ -2,6 +2,8 @@
 This repository contains the implementation code for ICCV2021 paper:  
 **Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028)  
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/parametric-contrastive-learning/long-tail-learning-on-imagenet-lt)](https://paperswithcode.com/sota/long-tail-learning-on-imagenet-lt?p=parametric-contrastive-learning)
+
 If you find this code or idea useful, please consider citing our work:
 ```
 @misc{cui2021parametric,
