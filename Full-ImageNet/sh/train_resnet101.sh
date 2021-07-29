@@ -1,12 +1,12 @@
 python paco_imagenet.py \
-    --arch resnet50 \
+    --arch resnet101 \
     --dataset imagenet \
     --data /home/sharedir/research/ImageNet/ \
     --alpha 0.05 \
     --beta 1.0 \
     --wd 1e-4 \
     --gamma 1.0 \
-    --mark paco_r50_fullImageNet \
+    --mark paco_r101_fullImageNet \
     --lr 0.04 \
     -b 256 \
     --moco-t 0.2 \
