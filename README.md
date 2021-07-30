@@ -50,7 +50,7 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
  | PaCo  | ResNet-152   | 41.2 | [download]() | [download]() |
  
 # Get Started
-For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation:  
+For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation. Note that PyTorch>=1.6.  
 ```
 cd Full-ImageNet
 bash sh/train_resnet50.sh
