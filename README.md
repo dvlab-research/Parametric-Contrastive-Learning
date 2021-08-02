@@ -41,19 +41,19 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
  | PaCo  | ResNeXt-50  | 58.2 | [download](https://drive.google.com/file/d/1J7pvp-CWx7e2hPFNa1a05Oy9igHSe1eM/view?usp=sharing) | [download](https://drive.google.com/file/d/1ssvsA-xG2oj5wUwmC-Gu_pVZdg9POp7R/view?usp=sharing) |
  | PaCo  | ResNeXt-101 | 60.0 | [download](https://drive.google.com/file/d/1k14zhOwF8NBTb17mUN_UAGBkIIZsVBCV/view?usp=sharing) | [download](https://drive.google.com/file/d/1ZVwUKFb9AozaNKb8aSUXLCy27LgE7Kt2/view?usp=sharing) |
  
- ## iNaturalist 2018 (Imbalance setting)
+ ## iNaturalist 2018 (Imbalanced setting)
  | Method | Model | Top-1 Acc(%) | link |  log |
  | :---: | :---: | :---: | :---: | :---: |
  | PaCo  | ResNet-50   | 73.2 | [download]() | [download]() |
  | PaCo  | ResNet-152  | 75.2 | [download]() | [download]() |
  
- ## Places-LT (Imbalance setting)
+ ## Places-LT (Imbalanced setting)
   | Method | Model | Top-1 Acc(%) | link | log | 
  | :---: | :---: | :---: | :---: | :---: |
  | PaCo  | ResNet-152   | 41.2 | [download]() | [download]() |
  
 # Get Started
-For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation. Note that PyTorch>=1.6. All experiments are conducted on 4 GPUS. If you have more gpu resources, please make sure that the learning rate should be linearly scaled and 32 images per gpu are recommented.
+For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation. Note that PyTorch>=1.6. All experiments are conducted on 4 GPUs. If you have more GPU resources, please make sure that the learning rate should be linearly scaled and 32 images per gpu are recommented.
 ```
 cd Full-ImageNet
 bash sh/train_resnet50.sh
