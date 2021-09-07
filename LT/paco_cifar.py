@@ -312,11 +312,6 @@ def main_worker(gpu, ngpus_per_node, args):
     augmentation_regular = [
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomApply([
-            transforms.ColorJitter(0.4, 0.4, 0.4, 0.1)
-        ], p=0.8),
-        transforms.RandomGrayscale(p=0.2),
-        transforms.RandomApply([moco.loader.GaussianBlur([.1, 2.])], p=0.5),
         CIFAR10Policy(),    # add AutoAug
         transforms.ToTensor(),
         Cutout(n_holes=1, length=16),
