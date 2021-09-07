@@ -9,13 +9,13 @@
 #SBATCH -p batch_72h 
 
 PORT=$[$RANDOM + 10000]
-source activate py3.6pt1.7
+#source activate py3.6pt1.7
 
 
 python paco_fp16_places.py \
   --dataset places \
   --arch resnet152 \
-  --data /research/dept6/jqcui/Data/Places \
+  --data /mnt/backup2/home/sliu/jqcui/Data/Places365 \
   --alpha 0.05 \
   --beta 1.0 \
   --gamma 1.0 \
@@ -29,4 +29,4 @@ python paco_fp16_places.py \
   --dist-url "tcp://localhost:$PORT" \
   --epochs 30 \
   --fp16 \
-  --reload_torch pretrained_models/resnet152-b121ed2d.pth
+  --reload_torch pretrained_models/resnet152-394f9c45.pth

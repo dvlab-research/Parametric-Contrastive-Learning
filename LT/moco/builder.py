@@ -24,7 +24,7 @@ class MoCo(nn.Module):
     Build a MoCo model with: a query encoder, a key encoder, and a queue
     https://arxiv.org/abs/1911.05722
     """
-    def __init__(self, base_encoder, dim=128, K=65536, m=0.999, T=0.07, mlp=False, normalize=True, num_classes=1000):
+    def __init__(self, base_encoder, dim=128, K=65536, m=0.999, T=0.2, mlp=False, feat_dim=2048, normalize=False, num_classes=1000):
         """
         dim: feature dimension (default: 128)
         K: queue size; number of negative keys (default: 65536)
@@ -41,8 +41,8 @@ class MoCo(nn.Module):
         # num_classes is the output fc dimension
         self.encoder_q = base_encoder(num_classes=dim)
         self.encoder_k = base_encoder(num_classes=dim)
-        self.linear = nn.Linear(2048, num_classes)
-        self.linear_k = nn.Linear(2048, num_classes)
+        self.linear = nn.Linear(feat_dim, num_classes)
+        self.linear_k = nn.Linear(feat_dim, num_classes)
 
 
         if mlp:  # hack: brute-force replacement
@@ -63,7 +63,7 @@ class MoCo(nn.Module):
         self.register_buffer("queue", torch.randn(K, dim))
         self.queue = nn.functional.normalize(self.queue, dim=0)
 
-        self.register_buffer("queue_l", torch.randint(0, 1000, (K,)))
+        self.register_buffer("queue_l", torch.randint(0, num_classes, (K,)))
 
         self.register_buffer("queue_ptr", torch.zeros(1, dtype=torch.long))
 

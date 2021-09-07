@@ -5,7 +5,7 @@ import numpy as np
 
 
 class PaCoLoss(nn.Module):
-    def __init__(self, alpha=1.0, beta=1.0, gamma=0.0, supt=1.0, temperature=1.0, base_temperature=None, K=128, num_classes=1000):
+    def __init__(self, alpha, beta=1.0, gamma=1.0, supt=1.0, temperature=1.0, base_temperature=None, K=128, num_classes=1000):
         super(PaCoLoss, self).__init__()
         self.temperature = temperature
         self.base_temperature = temperature if base_temperature is None else base_temperature

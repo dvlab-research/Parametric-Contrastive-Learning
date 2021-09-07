@@ -130,6 +130,8 @@ parser.add_argument('--aug', default=None, type=str,
 parser.add_argument('--randaug_m', default=10, type=int, help='randaug-m')
 parser.add_argument('--randaug_n', default=2, type=int, help='randaug-n')
 parser.add_argument('--num_classes', default=365, type=int, help='num classes in dataset')
+parser.add_argument('--feat_dim', default=2048, type=int,
+                    help='last feature dim of backbone')
 
 # fp16
 parser.add_argument('--fp16', action='store_true', help=' fp16 training')
@@ -148,7 +150,7 @@ def disable_bn(model):
 
 def main():
     args = parser.parse_args()
-    args.root_model = f'{args.root_path}/{args.dataset}/{args.mark}/checkpoint'
+    args.root_model = f'{args.root_path}/{args.dataset}/{args.mark}'
     os.makedirs(args.root_model, exist_ok=True)
 
     if args.seed is not None:
@@ -208,7 +210,7 @@ def main_worker(gpu, ngpus_per_node, args):
     print("=> creating model '{}'".format(args.arch))
     model = moco.builder.MoCo(
         models.__dict__[args.arch],
-        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.normalize, args.num_classes)
+        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.feat_dim, args.normalize, args.num_classes)
     print(model)
 
     if args.distributed:
@@ -251,13 +253,6 @@ def main_worker(gpu, ngpus_per_node, args):
            
             #### fix
             disable_conv(model)
-            for module in model.encoder_q.layer4[-1].modules():
-                if isinstance(module, nn.Conv2d):
-                   module.weight.requires_grad=True
-                if isinstance(module, nn.BatchNorm2d):
-                   module.weight.requires_grad=True
-                   module.bias.requires_grad=True
-
             for module in model.encoder_q.layer4[-1].modules():
                 if isinstance(module, nn.Conv2d):
                    module.weight.requires_grad=True
@@ -520,7 +515,7 @@ def train(train_loader, model, criterion, optimizer, epoch, scaler, args):
         end = time.time()
 
         if i % args.print_freq == 0:
-            progress.display(i)
+            progress.display(i, args)
     
 
 def validate(val_loader, train_loader, model, criterion, args):
@@ -564,15 +559,16 @@ def validate(val_loader, train_loader, model, criterion, args):
             end = time.time()
 
             if i % args.print_freq == 0:
-                progress.display(i)
+                progress.display(i, args)
 
         # TODO: this should also be done with the ProgressMeter
-        print(' * Acc@1 {top1.avg:.3f} Acc@5 {top5.avg:.3f}'
+        open(args.root_model+"/"+args.mark+".log","a+").write(' * Acc@1 {top1.avg:.3f} Acc@5 {top5.avg:.3f}\n'
               .format(top1=top1, top5=top5))
 
         probs, preds = F.softmax(total_logits.detach(), dim=1).max(dim=1)
         many_acc_top1, median_acc_top1, low_acc_top1, cls_accs = shot_acc(preds, total_labels, train_loader, acc_per_cls=True)
-        print('Many_acc: %.5f, Medium_acc: %.5f Low_acc: %.5f\n'%(many_acc_top1, median_acc_top1, low_acc_top1))
+        open(args.root_model+"/"+args.mark+".log","a+").write('Many_acc: %.5f, Medium_acc: %.5f Low_acc: %.5f\n'%(many_acc_top1, median_acc_top1, low_acc_top1))
+
 
     return top1.avg
 
@@ -612,10 +608,10 @@ class ProgressMeter(object):
         self.meters = meters
         self.prefix = prefix
 
-    def display(self, batch):
+    def display(self, batch, args):
         entries = [self.prefix + self.batch_fmtstr.format(batch)]
         entries += [str(meter) for meter in self.meters]
-        print('\t'.join(entries))
+        open(args.root_model+"/"+args.mark+".log","a+").write('\t'.join(entries)+"\n")
 
     def _get_batch_fmtstr(self, num_batches):
         num_digits = len(str(num_batches // 1))

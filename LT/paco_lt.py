@@ -129,6 +129,8 @@ parser.add_argument('--aug', default=None, type=str,
 parser.add_argument('--randaug_m', default=10, type=int, help='randaug-m')
 parser.add_argument('--randaug_n', default=2, type=int, help='randaug-n')
 parser.add_argument('--num_classes', default=1000, type=int, help='num classes in dataset')
+parser.add_argument('--feat_dim', default=2048, type=int,
+                    help='last feature dim of backbone')
 
 # fp16
 parser.add_argument('--fp16', action='store_true', help=' fp16 training')
@@ -199,7 +201,7 @@ def main_worker(gpu, ngpus_per_node, args):
     print("=> creating model '{}'".format(args.arch))
     model = moco.builder.MoCo(
         models.__dict__[args.arch] if args.arch != 'resnext101_32x4d' else getattr(resnet_imagenet, args.arch),
-        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.normalize, num_classes=args.num_classes)
+        args.moco_dim, args.moco_k, args.moco_m, args.moco_t, args.mlp, args.feat_dim, args.normalize, num_classes=args.num_classes)
     print(model)
 
     if args.distributed:
@@ -283,7 +285,7 @@ def main_worker(gpu, ngpus_per_node, args):
     txt_train = f'./imagenet_inat/data/iNaturalist18/iNaturalist18_train.txt' if args.dataset == 'inat' \
         else f'./imagenet_inat/data/ImageNet_LT/ImageNet_LT_train.txt'
 
-    txt_test = f'./imagenet_inat/data/iNaturalist18/iNaturalist18_test.txt' if args.dataset == 'inat' \
+    txt_test = f'./imagenet_inat/data/iNaturalist18/iNaturalist18_val.txt' if args.dataset == 'inat' \
         else f'./imagenet_inat/data/ImageNet_LT/ImageNet_LT_test.txt'
 
     normalize = transforms.Normalize(mean=[0.466, 0.471, 0.380], std=[0.195, 0.194, 0.192]) if args.dataset == 'inat' \
@@ -401,7 +403,7 @@ def main_worker(gpu, ngpus_per_node, args):
     train_dataset = INaturalist_moco(
         root=args.data,
         txt=txt_train,
-        transform=transforms.Compose(augmentation)
+        transform=transform_train
     ) if args.dataset == 'inat' else ImageNetLT_moco(
         root=args.data,
         txt=txt_train,
