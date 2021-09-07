@@ -25,7 +25,7 @@ python paco_cifar.py \
   --moco-t 0.05 \
   --moco-k 1024 \
   --moco-dim 64 \
-  --feat_dim 128 \
+  --feat_dim 64 \
   --aug cifar100 \
   --dist-url "tcp://localhost:$PORT" \
   --epochs 400

@@ -71,7 +71,7 @@ class ResNet_s(nn.Module):
 
     def __init__(self, block, num_blocks, num_classes=10, use_norm=False, return_features=False):
         super(ResNet_s, self).__init__()
-        factor = 2
+        factor = 1 
         self.in_planes = 16 * factor
 
         self.conv1 = nn.Conv2d(3, 16 * factor, kernel_size=3, stride=1, padding=1, bias=False)
