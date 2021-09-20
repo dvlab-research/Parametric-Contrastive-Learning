@@ -44,13 +44,13 @@ In this paper, we propose Parametric Contrastive Learning (PaCo) to tackle long-
  ## iNaturalist 2018 (Imbalanced setting)
  | Method | Model | Top-1 Acc(%) | link |  log |
  | :---: | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-50   | 73.2 | [download]() | [download]() |
- | PaCo  | ResNet-152  | 75.2 | [download]() | [download]() |
+ | PaCo  | ResNet-50   | 73.2 | TBD | [download]() |
+ | PaCo  | ResNet-152  | 75.2 | TBD | [download]() |
  
  ## Places-LT (Imbalanced setting)
   | Method | Model | Top-1 Acc(%) | link | log | 
  | :---: | :---: | :---: | :---: | :---: |
- | PaCo  | ResNet-152   | 41.2 | [download]() | [download]() |
+ | PaCo  | ResNet-152   | 41.2 | TBD | [download]() |
  
 # Get Started
 For full ImageNet, ImageNet-LT, iNaturalist 2018, Places-LT training and evaluation. Note that PyTorch>=1.6. All experiments are conducted on 4 GPUs. If you have more GPU resources, please make sure that the learning rate should be linearly scaled and 32 images per gpu is recommented.
