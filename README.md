@@ -66,7 +66,7 @@ bash sh/PlacesLT_train_R152.sh
 bash sh/PlacesLT_eval_R152.sh
 
 cd LT
-bash bash sh/CIFAR100_train_imb0.1.sh
+bash sh/CIFAR100_train_imb0.1.sh
 ```
 
 # Contact
