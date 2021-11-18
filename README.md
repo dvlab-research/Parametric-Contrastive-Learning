@@ -64,6 +64,9 @@ bash sh/ImageNetLT_train_R50.sh
 bash sh/ImageNetLT_eval_R50.sh
 bash sh/PlacesLT_train_R152.sh
 bash sh/PlacesLT_eval_R152.sh
+
+cd LT
+bash bash sh/CIFAR100_train_imb0.1.sh
 ```
 
 # Contact
