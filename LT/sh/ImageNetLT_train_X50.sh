@@ -23,7 +23,6 @@ python paco_lt.py \
   --mark X50_mocot0.07_augrandclsstack_sim_400epochs_lr0.02_t1 \
   --lr 0.02 \
   --moco-t 0.07 \
-  --supt 1.0 \
   --aug randclsstack_sim \
   --randaug_m 10 \
   --randaug_n 2 \
