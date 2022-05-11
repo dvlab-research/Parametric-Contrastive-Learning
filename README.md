@@ -1,8 +1,8 @@
 # Imbalanced Learning for Recognition
 This repository contains the code of our papers on the topic of imbalanced learning for recognition.
-* The code for our paper "Region Rebalance for Long-Tailed Semantic Segmentation" ([paper](https://arxiv.org/pdf/2204.01969.pdf)) will be released soon;
-* The code for our paper "Residual Learning for Long-tailed recogntion" ([paper](https://arxiv.org/pdf/2101.10633.pdf) and [code](https://github.com/jiequancui/ResLT));
-* The code for our paper "Parametric Contrastive Learning" ([paper](https://arxiv.org/pdf/2107.12028.pdf) and [code](https://github.com/dvlab-research/Parametric-Contrastive-Learning));
+* The code for our preprint paper "Region Rebalance for Long-Tailed Semantic Segmentation" ([paper](https://arxiv.org/pdf/2204.01969.pdf)) will be released soon;
+* The code for our TPAMI 2022 paper "Residual Learning for Long-tailed recogntion" ([paper](https://arxiv.org/pdf/2101.10633.pdf) and [code](https://github.com/jiequancui/ResLT));
+* The code for our ICCV 2021 paper "Parametric Contrastive Learning" ([paper](https://arxiv.org/pdf/2107.12028.pdf) and [code](https://github.com/dvlab-research/Parametric-Contrastive-Learning));
 
 
 
