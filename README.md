@@ -17,17 +17,6 @@ This repository contains the implementation code for ICCV2021 paper:
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/parametric-contrastive-learning/long-tail-learning-on-places-lt)](https://paperswithcode.com/sota/long-tail-learning-on-places-lt?p=parametric-contrastive-learning)    
 
-If you find this code or idea useful, please consider citing our work:
-```
-@misc{cui2021parametric,
-      title={Parametric Contrastive Learning}, 
-      author={Jiequan Cui and Zhisheng Zhong and Shu Liu and Bei Yu and Jiaya Jia},
-      year={2021},
-      eprint={2107.12028},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
 
 # Overview
 
@@ -80,6 +69,35 @@ bash sh/CIFAR100_train_imb0.1.sh
 
 # Contact
 If you have any questions, feel free to contact us through email (jiequancui@link.cuhk.edu.hk) or Github issues. Enjoy!
+
+# BibTex
+If you find this code or idea useful, please consider citing our work:
+```
+@inproceedings{cui2021parametric,
+  title={Parametric contrastive learning},
+  author={Cui, Jiequan and Zhong, Zhisheng and Liu, Shu and Yu, Bei and Jia, Jiaya},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={715--724},
+  year={2021}
+}
+
+@ARTICLE{9774921,
+  author={Cui, Jiequan and Liu, Shu and Tian, Zhuotao and Zhong, Zhisheng and Jia, Jiaya},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={ResLT: Residual Learning for Long-tailed Recognition}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TPAMI.2022.3174892}}
+  
+@article{cui2022region,
+  title={Region Rebalance for Long-Tailed Semantic Segmentation},
+  author={Cui, Jiequan and Yuan, Yuhui and Zhong, Zhisheng and Tian, Zhuotao and Hu, Han and Lin, Stephen and Jia, Jiaya},
+  journal={arXiv preprint arXiv:2204.01969},
+  year={2022}
+  }
+```
  
  
  
