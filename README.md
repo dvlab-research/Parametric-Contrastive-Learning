@@ -33,6 +33,7 @@ This repository contains the implementation code for ICCV2021 paper
  | GPaCo  | ResNet-50   | 58.5 | [download](https://drive.google.com/file/d/146_KqMYAeefAyavFfrysKa_jlnT3-DrC/view?usp=sharing) | [download](https://drive.google.com/file/d/1VFRbyLMrP8Oq_KeC-4QamcSh27u3cwG-/view?usp=sharing) |
  | GPaCo  | ResNeXt-50  | 58.9 | [download](https://drive.google.com/file/d/1_iTsXp2VJJ1zCOQL2eCjoAjFDEmcbpfE/view?usp=sharing) | [download](https://drive.google.com/file/d/1Zu5iAVhq4DJeORGlQvKtua3_rkRix8hB/view?usp=sharing) |
  | GPaCo  | ResNeXt-101 | 60.8 | [download](https://drive.google.com/file/d/1PkcgIgeMimb6zPSaOSAmTMsG8ahm3di1/view?usp=sharing) | [download](https://drive.google.com/file/d/1Up6pJBmi4vEJUgPNyGaiIJYWL3gMRZXG/view?usp=sharing) |
+ | GPaCo  | ensemble( 2-ResNeXt-101) | 63.2 | --- | --- |
  
  ### iNaturalist 2018
  | Method | Model | Top-1 Acc(%) | link |  log |
