@@ -49,15 +49,16 @@ This repository contains the implementation code for ICCV2021 paper
  ## Semantic Segmentation
  | Method | Dataset | Model | mIoU (s.s.) | mIoU (m.s.) | link | log | 
  | :---:  | :---: | :---: | :---: | :---: | :---: | :---: |
- | GPaCo  | ADE20K | Swin-B    | 51.6 | 53.2 | [download]() | [download]() |
- | GPaCo  | ADE20K | Swin-L    | 52.8 | 54.3 | [download]() | [download]() |
- | GPaCo  | COCO-Stuff | ResNet-50    | 37.0 | 37.9 | [download]() | [download]() |
- | GPaCo  | COCO-Stuff | ResNet-101   | 38.8 | 40.1 | [download]() | [download]() |
- | GPaCo  | Pascal Context 59 | ResNet-50    | 51.9 | 53.7 | [download]() | [download]() |
- | GPaCo  | Pascal Context 59 | ResNet-101   | 54.2 | 56.3 | [download]() | [download]() |
- | GPaCo  | Cityscapes | ResNet-18    | 78.1 | 79.7 | [download]() | [download]() |
- | GPaCo  | Cityscapes | ResNet-50    | 80.8 | 82.0 | [download]() | [download]() |
- | GPaCo  | Cityscapes | ResNet-101   | 81.4 | 82.1 | [download]() | [download]() |
+ | GPaCo  | ADE20K | Swin-T    | 45.4 | 46.8 | --- | [download](https://drive.google.com/file/d/1-ZC7r_SELvm9BnEPZsBu8d0mN8_7ltVZ/view?usp=sharing) |
+ | GPaCo  | ADE20K | Swin-B    | 51.6 | 53.2 | --- | [download](https://drive.google.com/file/d/1N9fI2JeCp_Rq_RnoMKiRdd1q2lU0NxYy/view?usp=sharing) |
+ | GPaCo  | ADE20K | Swin-L    | 52.8 | 54.3 | --- | [download](https://drive.google.com/file/d/1te4ejaiwbne2GGn0aYwlPUMHGlh34luZ/view?usp=sharing) |
+ | GPaCo  | COCO-Stuff | ResNet-50    | 37.0 | 37.9 | --- | [download](https://drive.google.com/file/d/1ox_-EbwbfBwNnb9_dYnQeCtyJoXQ9KVn/view?usp=sharing) |
+ | GPaCo  | COCO-Stuff | ResNet-101   | 38.8 | 40.1 | --- | [download](https://drive.google.com/file/d/1OIXkxu5xo3_0crKlpgHhZMofPKLVXpVC/view?usp=sharing) |
+ | GPaCo  | Pascal Context 59 | ResNet-50    | 51.9 | 53.7 | --- | [download](https://drive.google.com/file/d/1_aVw-_ThzPNtlcpAarJNOPYuPZ04QDxO/view?usp=sharing) |
+ | GPaCo  | Pascal Context 59 | ResNet-101   | 54.2 | 56.3 | --- | [download](https://drive.google.com/file/d/1PAA1v_BnGtGXXZCbKJ1BzsQg-SKZl63i/view?usp=sharing) |
+ | GPaCo  | Cityscapes | ResNet-18    | 78.1 | 79.7 | --- | [download](https://drive.google.com/file/d/1AxPqf3MRbAODefw0njpwmlEii7z7eyuc/view?usp=sharing) |
+ | GPaCo  | Cityscapes | ResNet-50    | 80.8 | 82.0 | --- | [download](https://drive.google.com/file/d/1Hio9KIc14zyBaCBlXE0j7fM7VdEhA7BB/view?usp=sharing) |
+ | GPaCo  | Cityscapes | ResNet-101   | 81.4 | 82.1 | --- | [download](https://drive.google.com/file/d/1Ph9ijtFLrfLD9rax1KNfvwW0bXewMiO7/view?usp=sharing) |
  
  ## Get Started
  ### Environments
