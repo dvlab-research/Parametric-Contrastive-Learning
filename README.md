@@ -62,21 +62,41 @@ This repository contains the implementation code for ICCV2021 paper
  
  ### Train and Evaluation Scripts
  #### On full ImageNet and OOD robustness,
- We use 8 Nvidia GForce RTx 3090 GPUs.
+ We use 8 Nvidia GForce RTx 3090 GPUs. MAE pretrained models should be downloaded from [here](https://github.com/facebookresearch/mae).
  ```
-cd LT
-bash sh/train_resnet50.sh
-bash sh/eval_resnet50.sh
+ cd GPaCo/LT
+ bash sh/ImageNet/train_resnet50.sh
+ bash sh/ImageNet/eval_resnet50.sh
 
-cd ViTs
-bash sh/train_resnet50.sh
-bash sh/eval_resnet50.sh
-```
-
- 
+ cd GPaCo/MAE-ViTs
+ bash sh/finetune_base_mae.sh
+ bash sh/finetune_base_mae_multitask.sh
+ bash sh/finetune_base_mae_gpaco.sh
+ bash sh/finetune_base_mae_gpaco_eval.sh
+ ```
  
  #### On imbalanced data,
+ ```
+ cd GPaCo/LT
+ bash sh/LT/ImageNetLT_train_X50_multitask.sh
+ bash sh/LT/ImageNetLT_train_X50.sh
+ sh/LT/ImageNetLT_eval_X50.sh
+ 
+ bash sh/LT/Inat_train_R50.sh
+ sh/LT/Inat_eval_R50.sh
+ 
+ bash sh/LT/PlacesLT_train_R152.sh
+ bash sh/LT/PlacesLT_eval_R152.sh
+ ```
+ 
  #### On semantic segmentation,
+ ```
+ cd GPaCo/Seg/semseg
+ bash sh/ablation_paco_ade20k/upernet_swinbase_160k_ade20k_paco.sh
+ bash sh/ablation_paco_coco10k/r50_deeplabv3plus_40k_coco10k_paco.sh
+ bash sh/ablation_paco_context/r50_deeplabv3plus_40k_context_paco.sh
+ bash sh/ablation_paco_cityscapes/r50_deeplabv3plus_40k_context.sh
+ ```
  
  
 
