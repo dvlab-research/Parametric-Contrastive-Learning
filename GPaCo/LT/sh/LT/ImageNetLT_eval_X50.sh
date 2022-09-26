@@ -1,32 +1,32 @@
 #!/bin/bash
-#SBATCH --job-name=x50
-#SBATCH --mail-user=jqcui@cse.cuhk.edu.hk
+#SBATCH --job-name=gpaco_imagenetlt_x50
+#SBATCH --mail-user=jiequancui@link.cuhk.edu.hk
+#SBATCH --output=gpaco_imagenetlt_x50.log
 #SBATCH --mail-type=ALL
-#SBATCH --output=x50.log
+#SBATCH --cpus-per-task=32
 #SBATCH --gres=gpu:4
-#SBATCH -c 40 
-#SBATCH --constraint=ubuntu18,highcpucount
-#SBATCH -p batch_72h 
+#SBATCH -p dvlab
+#SBATCH -x proj77
+#SBATCH --constraint=3090
+
+source activate py3.8_pt1.8.1 
 
 PORT=$[$RANDOM + 10000]
-source activate py3.6pt1.7
-
-
 python paco_lt.py \
   --dataset imagenet \
   --arch resnext50_32x4d \
-  --data /research/dept6/jqcui/Data/ImageNet \
+  --data /mnt/proj75/jqcui/Data/ImageNet \
   --alpha 0.05 \
   --beta 1.0 \
   --gamma 1.0 \
   --wd 5e-4 \
-  --mark X50_mocot0.07_augrandclsstack_sim_400epochs_lr0.02_t1 \
-  --lr 0.02 \
-  --moco-t 0.07 \
-  --aug randclsstack_sim \
+  --mark gpaco_imagenetlt_x50 \
+  --lr 0.06 \
+  --moco-t 0.2 \
+  --aug randcls_randclsstack \
   --randaug_m 10 \
-  --randaug_n 2 \
+  --randaug_n 3 \
   --dist-url "tcp://localhost:$PORT" \
   --epochs 400 \
-  --evaluate \
-  --reload pretrained_models/imagenetlt_x50.pth 
+  --resume ../../../pretrain_models/gpaco_x50_imagenetlt.pth.tar \
+  --evaluate

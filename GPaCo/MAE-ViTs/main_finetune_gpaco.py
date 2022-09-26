@@ -157,7 +157,7 @@ def get_args_parser():
     # PaCo
     parser.add_argument('--alpha', default=0.02, type=float)
     parser.add_argument('--temperature', default=0.2, type=float)
-    parser.add_argument('--rand_n', default=5, type=int)
+    parser.add_argument('--rand_n', default=12, type=int)
     parser.add_argument('--rand_m', default=10, type=int)
     return parser
 

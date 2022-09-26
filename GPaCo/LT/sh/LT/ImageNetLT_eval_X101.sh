@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=x50
+#SBATCH --job-name=gpaco_imagenetlt_x101
 #SBATCH --mail-user=jqcui@cse.cuhk.edu.hk
 #SBATCH --mail-type=ALL
-#SBATCH --output=x50.log
+#SBATCH --output=gpaco_imagenetlt_x101.log
 #SBATCH --gres=gpu:4
 #SBATCH -c 40 
 #SBATCH --constraint=ubuntu18,highcpucount
@@ -10,24 +10,23 @@
 #SBATCH -w gpu51
 
 PORT=$[$RANDOM + 10000]
-source activate py3.6pt1.7
-
+source activate py3.8_pt1.8.1 
 
 python paco_lt.py \
   --dataset imagenet \
   --arch resnext101_32x4d \
-  --data /research/dept6/jqcui/Data/ImageNet \
+  --data /mnt/proj75/jqcui/Data/ImageNet \
   --alpha 0.05 \
   --beta 1.0 \
   --gamma 1.0 \
   --wd 5e-4 \
-  --mark X101_mocot0.2_augrandclsstack_sim_400epochs_lr0.03_rand10_3 \
-  --lr 0.03 \
+  --mark gpaco_imagenetlt_x101 \
+  --lr 0.06 \
   --moco-t 0.2 \
-  --aug randclsstack_sim \
+  --aug randcls_randclsstack \
   --randaug_m 10 \
-  --randaug_n 3 \
+  --randaug_n 5 \
   --dist-url "tcp://localhost:$PORT" \
   --epochs 400 \
-  --evaluate \
-  --reload pretrained_models/imagenetlt_x101.pth 
+  --resume ../../../pretrain_models/gpaco_x101_imagenetlt.pth.tar \
+  --evaluate

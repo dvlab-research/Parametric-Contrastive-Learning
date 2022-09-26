@@ -27,6 +27,8 @@ from models import resnet_imagenet
 from randaugment import rand_augment_transform, GaussianBlur
 import moco.loader
 import moco.builder
+from dataset.imagenet import ImageNetLT
+from dataset.inat import INaturalist
 from dataset.imagenet_moco import ImageNetLT_moco
 from dataset.inat_moco import INaturalist_moco
 from losses import PaCoLoss

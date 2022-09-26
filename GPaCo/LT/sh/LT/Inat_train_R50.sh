@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=Inat_8gpus
+#SBATCH --job-name=gpaco_inat_r50
 #SBATCH --mail-user=jiequancui@link.cuhk.edu.hk
-#SBATCH --output=r50_inat.log
+#SBATCH --output=gpaco_inat_r50.log
 #SBATCH --mail-type=ALL
 #SBATCH --cpus-per-task=56
 #SBATCH --gres=gpu:8
@@ -19,14 +19,12 @@ python paco_lt.py \
   --beta 1.0 \
   --gamma 1.0 \
   --wd 1e-4 \
-  --mark R50_mocot0.2_augrandclsstack_sim_400epochs_lr0.04_8gpus \
+  --mark gpaco_inat_r50 \
   --lr 0.04 \
   --moco-t 0.2 \
-  --aug randclsstack_sim \
+  --aug randcls_sim \
   --randaug_m 10 \
   --randaug_n 2 \
   --dist-url "tcp://localhost:$PORT" \
   --num_classes 8142 \
-  --epochs 400 \
-  -b 256 \
-  -j 56
+  --epochs 400

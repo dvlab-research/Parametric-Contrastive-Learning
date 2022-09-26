@@ -37,7 +37,7 @@ from util.misc import NativeScalerWithGradNormCount as NativeScaler
 
 import models_vit_paco
 from paco import PaCoLoss
-from engine_finetune_paco import train_one_epoch, evaluate, evaluate_c, evaluate_a, evaluate_r, evaluate_s
+from engine_finetune_paco import train_one_epoch, evaluate, evaluate_c, evaluate_r, evaluate_s
 
 
 def get_args_parser():
@@ -157,6 +157,8 @@ def get_args_parser():
     # PaCo
     parser.add_argument('--alpha', default=0.2, type=float)
     parser.add_argument('--temperature', default=0.2, type=float)
+    parser.add_argument('--rand_n', default=12, type=int)
+    parser.add_argument('--rand_m', default=10, type=int)
 
     # robustness
     parser.add_argument('--eval_std', action='store_true', help='Perform evaluation only')

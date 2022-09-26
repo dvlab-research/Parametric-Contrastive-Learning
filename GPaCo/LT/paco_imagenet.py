@@ -30,7 +30,6 @@ import moco.builder
 from randaugment import rand_augment_transform, GaussianBlur
 from losses import PaCoLoss
 from models import resnet_imagenet
-from imagenet_a import *
 from imagenet_r import *
 
 
@@ -143,7 +142,6 @@ parser.add_argument('--evaluate_s', action='store_true',
                     help='evaluate model on imagenet-a')
 
 parser.add_argument('--corrupted_data', default=None, type=str, help='evaluate model on imagenet-c')
-parser.add_argument('--imagenet_a_data', default=None, type=str, help='evaluate model on imagenet-a')
 parser.add_argument('--imagenet_r_data', default=None, type=str, help='evaluate model on imagenet-r')
 parser.add_argument('--imagenet_s_data', default=None, type=str, help='evaluate model on imagenet-s')
 
@@ -715,22 +713,6 @@ def evaluate_c(net, test_transform, args):
     print('mce: ',mce)
     rel_mce = compute_mce(corruption_accs)
     print('rel mce: ',rel_mce)
-
-
-@torch.no_grad()
-def evaluate_a(net, test_transform, args):
-    # calculate
-    print('imagenet-a')
-    valdir = args.imagenet_a_data
-    val_loader = torch.utils.data.DataLoader(
-                datasets.ImageFolder(valdir, test_transform),
-                batch_size=100,
-                shuffle=False,
-                num_workers=24,
-                pin_memory=True)
-
-    loss, acc1 = test(net, val_loader, mark='imagenet-a')
-    print("loss: ",loss, 'acc1: \n',acc1)
 
 
 @torch.no_grad()
