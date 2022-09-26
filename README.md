@@ -10,38 +10,40 @@ This repository contains the code of our papers on the topic of imbalanced learn
 This repository contains the implementation code for ICCV2021 paper 
 **Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028) and arXiv paper **Generalized Parametric Contrastive Learning**.
 ## Full ImageNet Classification and Out-of-Distribution Robustness
-| Method | Model | Full ImageNet () | ImageNet-C (mCE) | ImageNet-C (rel. mCE) | ImageNet-R () | ImageNet-S () | link | log | 
+| Method | Model | Full ImageNet | ImageNet-C (mCE) | ImageNet-C (rel. mCE) | ImageNet-R | ImageNet-S | link | log | 
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| GPaCo      | ResNet-50   | 79.7 | 50.9 | 64.4 | 41.1 | 30.9 | [download]() | [download]() |
-| multi-task | ViT-B       | 83.4 | ---  | ---  | ---  | ---  | ---          | ---          |
-| GPaCo      | ViT-B       | 84.0 | 37.2 | 47.3 | 51.7 | 39.4 | [download]() | [download]() |
-| GPaCo      | ViT-L       | 86.0 | 30.7 | 39.0 | 60.3 | 48.3 | [download]() | [download]() |
+| GPaCo      | ResNet-50   | 79.7 | 50.9 | 64.4 | 41.1 | 30.9 | [download](https://drive.google.com/file/d/1aO_Vo8v0ZRfDFLayVndkO3HJC6ZqIhKh/view?usp=sharing) | [download](https://drive.google.com/file/d/1jCLs6aPYAZW14A2YGij2tEJYEG5HCFmT/view?usp=sharing) |
+| CE | ViT-B       | 83.6 | 39.1  | 49.9  | 49.9  | 36.1  | ---          | [download](https://drive.google.com/file/d/1Jv3R_kZL94jblzPgRhKNWTV56b9pa89l/view?usp=sharing) |
+| CE | ViT-L       | 85.7 | 32.4  | 41.4  | 60.3  | 45.5  | ---          | [download](https://drive.google.com/file/d/1gfiKm7G27gHALCZUnVvaIRIsTd0DbMba/view?usp=sharing) |
+| multi-task | ViT-B       | 83.4 | ---  | ---  | ---  | ---  | ---      | [download](https://drive.google.com/file/d/17CNEP8tIclaqwM9L_h6NXvgtujr7kNJT/view?usp=sharing)          |
+| GPaCo      | ViT-B       | **84.0** | **37.2** | **47.3** | **51.7** | **39.4** | [download](https://drive.google.com/file/d/1DLZLXt7PH4NiJ5AqebA9f9iHgMiS8muz/view?usp=sharing) | [download](https://drive.google.com/file/d/1_0INOI53iq0PihO2-bF43cOKj_t9a847/view?usp=sharing) |
+| GPaCo      | ViT-L       | **86.0** | **30.7** | **39.0** | **60.3** | **48.3** | [download](https://drive.google.com/file/d/14aJGaYDYfciGYUqVHmaH5xn7GVvrPClX/view?usp=sharing) | [download](https://drive.google.com/file/d/16NG5pOW2vMgSR0_SMYa2dMl00yr8tksP/view?usp=sharing) |
 
 ### CIFAR Classification
 | Method | Model | Top-1 Acc(%) | link | log | 
 | :---: | :---: | :---: | :---: | :---: |
-| multi-task  | ResNet-50   | 79.1 | [download]() | [download]() |
-| GPaCo       | ResNet-50   | 80.3 | [download]() | [download]() |
+| multi-task  | ResNet-50   | 79.1 | --- | --- |
+| GPaCo       | ResNet-50   | 80.3 | --- | --- |
 
 
 ## Long-tailed Recognition
 ### ImageNet-LT
  | Method | Model | Top-1 Acc(%) | link | log | 
  | :---: | :---: | :---: | :---: | :---: |
- | GPaCo  | ResNet-50   | 58.5 | [download]() | [download]() |
- | GPaCo  | ResNeXt-50  | 58.9 | [download]() | [download]() |
- | GPaCo  | ResNeXt-101 | 60.8 | [download]() | [download]() |
+ | GPaCo  | ResNet-50   | 58.5 | [download](https://drive.google.com/file/d/146_KqMYAeefAyavFfrysKa_jlnT3-DrC/view?usp=sharing) | [download](https://drive.google.com/file/d/1VFRbyLMrP8Oq_KeC-4QamcSh27u3cwG-/view?usp=sharing) |
+ | GPaCo  | ResNeXt-50  | 58.9 | [download](https://drive.google.com/file/d/1_iTsXp2VJJ1zCOQL2eCjoAjFDEmcbpfE/view?usp=sharing) | [download](https://drive.google.com/file/d/1Zu5iAVhq4DJeORGlQvKtua3_rkRix8hB/view?usp=sharing) |
+ | GPaCo  | ResNeXt-101 | 60.8 | [download](https://drive.google.com/file/d/1PkcgIgeMimb6zPSaOSAmTMsG8ahm3di1/view?usp=sharing) | [download](https://drive.google.com/file/d/1Up6pJBmi4vEJUgPNyGaiIJYWL3gMRZXG/view?usp=sharing) |
  
  ### iNaturalist 2018
  | Method | Model | Top-1 Acc(%) | link |  log |
  | :---: | :---: | :---: | :---: | :---: |
- | GPaCo  | ResNet-50   | 75.4 | TBD | [download]() |
+ | GPaCo  | ResNet-50   | 75.4 | [download](https://drive.google.com/file/d/1u2e0tvmHtgdcats5xgcAK76nes8SzjMW/view?usp=sharing) | [download](https://drive.google.com/file/d/1GvppGk4aRijqVhkcgRMqRz-niV4DQop9/view?usp=sharing) |
  | GPaCo  | ResNet-152  | --- | TBD | [download]() |
  
  ### Places-LT
   | Method | Model | Top-1 Acc(%) | link | log | 
  | :---: | :---: | :---: | :---: | :---: |
- | GPaCo  | ResNet-152   | 41.7 | TBD | [download]() |
+ | GPaCo  | ResNet-152   | 41.7 | [download](https://drive.google.com/file/d/1vbdM3ouFkt3qBWOMq59v1C8B8t0j2Nvc/view?usp=sharing) | [download](https://drive.google.com/file/d/1szk6kMElFnysZqbVS-ONkIIMS7fNuweo/view?usp=sharing) |
  
  ## Semantic Segmentation
  | Method | Dataset | Model | mIoU (s.s.) | mIoU (m.s.) | link | log | 
