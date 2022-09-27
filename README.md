@@ -11,6 +11,13 @@ This repository contains the code of our papers on the topic of imbalanced learn
 This repository contains the implementation code for ICCV2021 paper 
 **Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028) and arXiv paper **Generalized Parametric Contrastive Learning** (https://arxiv.org/abs/2209.12400).
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/long-tail-learning-on-inaturalist-2018)](https://paperswithcode.com/sota/long-tail-learning-on-inaturalist-2018?p=generalized-parametric-contrastive-learning)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/long-tail-learning-on-places-lt)](https://paperswithcode.com/sota/long-tail-learning-on-places-lt?p=generalized-parametric-contrastive-learning)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/long-tail-learning-on-imagenet-lt)](https://paperswithcode.com/sota/long-tail-learning-on-imagenet-lt?p=generalized-parametric-contrastive-learning)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/domain-generalization-on-imagenet-c)](https://paperswithcode.com/sota/domain-generalization-on-imagenet-c?p=generalized-parametric-contrastive-learning)
+
+
+
 ## Full ImageNet Classification and Out-of-Distribution Robustness
 | Method | Model | Full ImageNet | ImageNet-C (mCE) | ImageNet-C (rel. mCE) | ImageNet-R | ImageNet-S | link | log | 
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -114,13 +121,7 @@ This repository contains the implementation code for ICCV2021 paper
 
 # Parametric-Contrastive-Learning
 This repository contains the implementation code for ICCV2021 paper:  
-**Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028)  
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/parametric-contrastive-learning/long-tail-learning-on-imagenet-lt)](https://paperswithcode.com/sota/long-tail-learning-on-imagenet-lt?p=parametric-contrastive-learning)    
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/parametric-contrastive-learning/long-tail-learning-on-inaturalist-2018)](https://paperswithcode.com/sota/long-tail-learning-on-inaturalist-2018?p=parametric-contrastive-learning)           
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/parametric-contrastive-learning/long-tail-learning-on-places-lt)](https://paperswithcode.com/sota/long-tail-learning-on-places-lt?p=parametric-contrastive-learning)    
+**Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028)     
 
 
 ## Overview
