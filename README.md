@@ -48,7 +48,7 @@ This repository contains the implementation code for ICCV2021 paper
  | Method | Model | Top-1 Acc(%) | link |  log |
  | :---: | :---: | :---: | :---: | :---: |
  | GPaCo  | ResNet-50   | 75.4 | [download](https://drive.google.com/file/d/1u2e0tvmHtgdcats5xgcAK76nes8SzjMW/view?usp=sharing) | [download](https://drive.google.com/file/d/1GvppGk4aRijqVhkcgRMqRz-niV4DQop9/view?usp=sharing) |
- | GPaCo  | ResNet-152  | --- | TBD | [download]() |
+ | GPaCo  | ResNet-152  | 78.1 | --- | [download](https://drive.google.com/file/d/1eLO0ptdNLpM8Y0kaL9zFnS-rdlcb6PDS/view?usp=sharing) |
  
  ### Places-LT
   | Method | Model | Top-1 Acc(%) | link | log | 
