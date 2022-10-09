@@ -71,11 +71,11 @@ This repository contains the implementation code for ICCV2021 paper
  
  ## Get Started
  ### Environments
- We use python3.8, pytorch 1.8.1 and mmcv 1.3.13.
+ We use python3.8, pytorch 1.8.1, mmcv 1.3.13 and timm==0.3.2. Our code is based on [PaCo](https://github.com/dvlab-research/parametric-contrastive-learning), [MAE](https://github.com/facebookresearch/mae), and [mmseg](https://github.com/open-mmlab/mmsegmentation).
  
  ### Train and Evaluation Scripts
  #### On full ImageNet and OOD robustness,
- We use 8 Nvidia GForce RTx 3090 GPUs. MAE pretrained models should be downloaded from [here](https://github.com/facebookresearch/mae).
+ We use 8 Nvidia GForce RTx 3090 GPUs. MAE pretrained models should be downloaded from [here](https://github.com/facebookresearch/mae). 
  ```
  cd GPaCo/LT
  bash sh/ImageNet/train_resnet50.sh
