@@ -31,8 +31,8 @@ This repository contains the implementation code for ICCV2021 paper
 ### CIFAR Classification
 | Method | Model | Top-1 Acc(%) | link | log | 
 | :---: | :---: | :---: | :---: | :---: |
-| multi-task  | ResNet-50   | 79.1 | --- | --- |
-| GPaCo       | ResNet-50   | 80.3 | --- | --- |
+| multi-task  | ResNet-50   | 79.1 | --- | [download](https://drive.google.com/file/d/11_oGhqTdgKXaoJtn4CQDQS1W1Li_UDpz/view?usp=sharing) |
+| GPaCo       | ResNet-50   | 80.3 | --- | [download](https://drive.google.com/file/d/1olYyn4SQcwMEnQag1Q4lNpPnl45fuMbP/view?usp=sharing) |
 
 
 ## Long-tailed Recognition
