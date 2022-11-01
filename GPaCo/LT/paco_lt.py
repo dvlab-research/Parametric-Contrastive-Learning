@@ -314,28 +314,8 @@ def main_worker(gpu, ngpus_per_node, args):
             normalize
         ]
 
-    augmentation_regular = [
-            transforms.RandomResizedCrop(224),
-            transforms.RandomHorizontalFlip(),
-            transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0),
-            transforms.ToTensor(),
-            normalize,
-    ]
-
     augmentation_sim = [
             transforms.RandomResizedCrop(224),
-            transforms.RandomApply([
-                transforms.ColorJitter(0.4, 0.4, 0.4, 0.0)  # not strengthened
-            ], p=1.0),
-            transforms.RandomGrayscale(p=0.2),
-            transforms.RandomApply([moco.loader.GaussianBlur([.1, 2.])], p=0.5),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            normalize
-    ]
-
-    augmentation_sim02 = [
-            transforms.RandomResizedCrop(224, scale=(0.2,1.)),
             transforms.RandomApply([
                 transforms.ColorJitter(0.4, 0.4, 0.4, 0.0)  # not strengthened
             ], p=1.0),

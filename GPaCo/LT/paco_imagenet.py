@@ -134,8 +134,6 @@ parser.add_argument('--fp16', action='store_true', help=' fp16 training')
 # robustness
 parser.add_argument('--evaluate_c', action='store_true',
                     help='evaluate model on imagenet-c')
-parser.add_argument('--evaluate_a', action='store_true',
-                    help='evaluate model on imagenet-a')
 parser.add_argument('--evaluate_r', action='store_true',
                     help='evaluate model on imagenet-c')
 parser.add_argument('--evaluate_s', action='store_true',
@@ -322,13 +320,6 @@ def main_worker(gpu, ngpus_per_node, args):
             normalize
         ]
 
-    augmentation_regular = [
-            transforms.RandomResizedCrop(224),
-            transforms.RandomHorizontalFlip(),
-            transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0),
-            transforms.ToTensor(),
-            normalize,
-    ]
 
     augmentation_sim = [
             transforms.RandomResizedCrop(224),
@@ -410,10 +401,6 @@ def main_worker(gpu, ngpus_per_node, args):
     # robustness
     if args.evaluate_c:
         evaluate_c(model, val_transform, args)
-        return
-
-    if args.evaluate_a:
-        evaluate_a(model, val_transform, args)
         return
 
     if args.evaluate_r:
