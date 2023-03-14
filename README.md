@@ -212,6 +212,13 @@ If you find this code or idea useful, please consider citing our work:
   journal={arXiv preprint arXiv:2204.01969},
   year={2022}
   }
+  
+@article{zhong2023understanding,
+  title={Understanding Imbalanced Semantic Segmentation Through Neural Collapse},
+  author={Zhong, Zhisheng and Cui, Jiequan and Yang, Yibo and Wu, Xiaoyang and Qi, Xiaojuan and Zhang, Xiangyu and Jia, Jiaya},
+  journal={arXiv preprint arXiv:2301.01100},
+  year={2023}
+}
 ```
  
  
