@@ -199,12 +199,14 @@ If you find this code or idea useful, please consider citing our work:
 @ARTICLE{9774921,
   author={Cui, Jiequan and Liu, Shu and Tian, Zhuotao and Zhong, Zhisheng and Jia, Jiaya},
   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-  title={ResLT: Residual Learning for Long-tailed Recognition}, 
-  year={2022},
-  volume={},
-  number={},
-  pages={1-1},
-  doi={10.1109/TPAMI.2022.3174892}}
+  title={ResLT: Residual Learning for Long-Tailed Recognition}, 
+  year={2023},
+  volume={45},
+  number={3},
+  pages={3695-3706},
+  doi={10.1109/TPAMI.2022.3174892}
+  }
+
   
 @article{cui2022region,
   title={Region Rebalance for Long-Tailed Semantic Segmentation},
