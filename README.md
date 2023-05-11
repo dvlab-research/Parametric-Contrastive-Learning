@@ -1,5 +1,6 @@
 # Imbalanced Learning for Recognition
 This repository contains the code of our papers on the topic of imbalanced learning for recognition.
+* Our paper "Generalized Parametric Contrastive Learning" is accepted by TPAMI 2023.
 * Our paper "Understanding Imbalanced Semantic Segmentation Through Neural Collapse" is accepted by CVPR2023. The code will be released soon.   
 * The code for our preprint paper "Generalized Parametric Contrastive Learning" is released;
 * The code for our preprint paper "Region Rebalance for Long-Tailed Semantic Segmentation" ([paper](https://arxiv.org/pdf/2204.01969.pdf)) will be released soon;
