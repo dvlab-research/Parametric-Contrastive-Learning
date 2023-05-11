@@ -10,8 +10,8 @@ This repository contains the code of our papers on the topic of imbalanced learn
 
 
 # Generalized Parametric-Contrastive-Learning
-This repository contains the implementation code for ICCV2021 paper 
-**Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028) and arXiv paper **Generalized Parametric Contrastive Learning** (https://arxiv.org/abs/2209.12400).
+This repository contains the implementation code for ICCV2021 paper **Parametric Contrastive Learning** (https://arxiv.org/abs/2107.12028) 
+and TPAMI 2023 paper **Generalized Parametric Contrastive Learning** (https://arxiv.org/abs/2209.12400).
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/long-tail-learning-on-inaturalist-2018)](https://paperswithcode.com/sota/long-tail-learning-on-inaturalist-2018?p=generalized-parametric-contrastive-learning)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/generalized-parametric-contrastive-learning/long-tail-learning-on-places-lt)](https://paperswithcode.com/sota/long-tail-learning-on-places-lt?p=generalized-parametric-contrastive-learning)
