@@ -28,6 +28,7 @@ from .uper_head import UPerHead
 
 #
 from .uper_head_paco import UPerHead_paco
+from .uper_head_ceco import UPerHead_ceco
 
 __all__ = [
     'FCNHead', 'PSPHead', 'ASPPHead', 'PSAHead', 'NLHead', 'GCHead', 'CCHead',
