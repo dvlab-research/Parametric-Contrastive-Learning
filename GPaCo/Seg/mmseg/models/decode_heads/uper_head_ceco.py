@@ -19,7 +19,7 @@ import random
 from scipy.stats import ortho_group
 
 @HEADS.register_module()
-class UPerHead_cecol(BaseDecodeHead):  # Linear #the version of RR
+class UPerHead_cecol(BaseDecodeHead):  # 'Linear' version of CeCo, i.e., RR 
     """Unified Perceptual Parsing for Scene Understanding.
 
     This head is the implementation of `UPerNet
