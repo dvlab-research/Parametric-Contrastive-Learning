@@ -183,12 +183,16 @@ If you have any questions, feel free to contact us through email (jiequancui@lin
 # BibTex
 If you find this code or idea useful, please consider citing our work:
 ```
-@article{cui2022generalized,
-  title={Generalized Parametric Contrastive Learning},
+@ARTICLE{10130611,
   author={Cui, Jiequan and Zhong, Zhisheng and Tian, Zhuotao and Liu, Shu and Yu, Bei and Jia, Jiaya},
-  journal={arXiv preprint arXiv:2209.12400},
-  year={2022}
-}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Generalized Parametric Contrastive Learning}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-12},
+  doi={10.1109/TPAMI.2023.3278694}}
+
 
 @inproceedings{cui2021parametric,
   title={Parametric contrastive learning},
