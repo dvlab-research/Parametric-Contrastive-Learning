@@ -1,6 +1,6 @@
 # Imbalanced Learning for Recognition
 This repository contains the code of our papers on the topic of imbalanced learning for recognition.
-* Our new arXiv paper ["Decoupled Kullback-Leibler (DKL) Divergence Loss"](https://arxiv.org/pdf/2305.13948v1.pdf) achieves new state-of-the-art on **knowledge distillation** and **adversarial robustness**. 
+* Our new arXiv paper ["Decoupled Kullback-Leibler (DKL) Divergence Loss"](https://arxiv.org/pdf/2305.13948v1.pdf) achieves new state-of-the-art on **knowledge distillation** and **adversarial robustness**. [Code](https://github.com/jiequancui/DKL) is released.
 * Code for RR & CeCo is partially released.
 * Our paper "Generalized Parametric Contrastive Learning" is accepted by **TPAMI 2023**.
 * Our paper "Understanding Imbalanced Semantic Segmentation Through Neural Collapse" is accepted by **CVPR2023**. The code will be released soon.   
