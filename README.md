@@ -30,7 +30,7 @@ and TPAMI 2023 paper **Generalized Parametric Contrastive Learning** (https://ar
 | CE | ViT-L       | 85.7 | 32.4  | 41.4  | 60.3  | 45.5  | ---          | [download](https://drive.google.com/file/d/1gfiKm7G27gHALCZUnVvaIRIsTd0DbMba/view?usp=sharing) |
 | multi-task | ViT-B       | 83.4 | ---  | ---  | ---  | ---  | ---      | [download](https://drive.google.com/file/d/17CNEP8tIclaqwM9L_h6NXvgtujr7kNJT/view?usp=sharing)          |
 | GPaCo      | ViT-B       | **84.0** | **37.2** | **47.3** | **51.7** | **39.4** | [download](https://drive.google.com/file/d/1DLZLXt7PH4NiJ5AqebA9f9iHgMiS8muz/view?usp=sharing) | [download](https://drive.google.com/file/d/1_0INOI53iq0PihO2-bF43cOKj_t9a847/view?usp=sharing) |
-| GPaCo      | ViT-L       | **86.0** | **30.7** | **39.0** | **60.3** | **48.3** | [download](https://drive.google.com/file/d/14aJGaYDYfciGYUqVHmaH5xn7GVvrPClX/view?usp=sharing) | [download](https://drive.google.com/file/d/16NG5pOW2vMgSR0_SMYa2dMl00yr8tksP/view?usp=sharing) |
+| GPaCo      | ViT-L       | **86.0** | **30.7** | **39.0** | **60.3** | **48.3** | [download](https://mycuhk-my.sharepoint.com/:u:/g/personal/1155116769_link_cuhk_edu_hk/EYSTVmFZ99FEuOxt7LxiFesBoK2LNw2xC1H615Ir6Gd3ag?e=3ngaR0) | [download](https://drive.google.com/file/d/16NG5pOW2vMgSR0_SMYa2dMl00yr8tksP/view?usp=sharing) |
 
 ### CIFAR Classification
 | Method | Model | Top-1 Acc(%) | link | log | 
