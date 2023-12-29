@@ -141,7 +141,7 @@ class MultiTaskLoss(nn.Module):
         loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos * rew
         loss = loss.mean()
 
-        loss_balancesoftmax = F.cross_entropy(sup_logits+self.weight, labels[:batch_size].squeeze())
+        loss_balancesoftmax = F.cross_entropy(sup_logits + torch.log(self.weight + 1e-9), labels[:batch_size].squeeze())
         return loss_balancesoftmax + self.alpha * loss
 
 
