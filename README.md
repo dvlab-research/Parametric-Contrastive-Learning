@@ -1,5 +1,6 @@
 # Imbalanced Learning for Recognition
 This repository contains the code of our papers on the topic of imbalanced learning for recognition.
+* Our paper ["Decoupled Kullback-Leibler (DKL) Divergence Loss"](https://arxiv.org/pdf/2305.13948v1.pdf) is accepted by **NeurIPS 2024**
 * Our new paper ["Classes Are Not Equal: An Empirical Study on Image Recognition Fairness"](https://arxiv.org/abs/2402.18133) is accepted by **CVPR 2024**
 * Our new arXiv paper ["Decoupled Kullback-Leibler (DKL) Divergence Loss"](https://arxiv.org/pdf/2305.13948v1.pdf) achieves new state-of-the-art on **knowledge distillation** and **adversarial robustness**. [Code](https://github.com/jiequancui/DKL) is released.
 * Code for RR & CeCo is partially released.
